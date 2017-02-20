@@ -8,12 +8,16 @@
   <button class="btn btn-primary" (click)="doSearch(search.value)">Search</button>
 </form>
 
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+
 <div class="ui middle aligned divided list">
-  <div class="item" *ngFor="let track of itunes.results">
-    <img class="ui avatar image" src="{{track.artworkUrl30}}">
+  <div class="item" *ngFor="let item of results">
+    <img class="ui avatar image" src="{{item.thumbnail}}">
     <div class="content">
-      <a class="header" target="_blank" href="{{track.trackViewUrl}}">{{ track.trackName }}</a>
-      <div class="description">{{ track.artistName }}</div>
+      <a class="header" target="_blank" href="{{item.link}}">{{ item.track }}</a>
+      <div class="description">{{ item.artist }}</div>
     </div>
   </div>
 </div>

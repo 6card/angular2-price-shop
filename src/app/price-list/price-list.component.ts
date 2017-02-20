@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Price } from '../shared/price';
-import { SearchService } from '../shared/search.service';
+import { SearchItem, SearchService } from '../shared/search.service';
 
 @Component({
   selector: 'app-price-list',
@@ -9,6 +9,9 @@ import { SearchService } from '../shared/search.service';
 })
 export class PriceListComponent implements OnInit {
   prices: Price[];
+  private loading: boolean = false;
+  private results: SearchItem[];
+
   constructor(private itunes:SearchService) { 
     this.prices = [
       {
@@ -26,7 +29,11 @@ export class PriceListComponent implements OnInit {
   }
 
   doSearch(term:string) {
-    this.itunes.search(term)
+    this.loading = true;
+    this.itunes.search(term).subscribe( data => {
+      this.loading = false;
+      this.results = data;
+    });
   }
 
 }
