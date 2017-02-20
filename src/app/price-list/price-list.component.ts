@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
 import { Price } from '../shared/price';
 import { SearchItem, SearchService } from '../shared/search.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-price-list',
@@ -9,8 +12,10 @@ import { SearchItem, SearchService } from '../shared/search.service';
 })
 export class PriceListComponent implements OnInit {
   prices: Price[];
+
   private loading: boolean = false;
-  private results: SearchItem[];
+  private results: Observable<SearchItem[]>;
+  private searchField: FormControl;
 
   constructor(private itunes:SearchService) { 
     this.prices = [
@@ -26,14 +31,19 @@ export class PriceListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchField = new FormControl();
+    this.results = this.searchField.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .do( _ => this.loading = true)
+      //.map( term => this.itunes.search(term))
+      .switchMap( term => this.itunes.search(term))      
+      .do( _ => this.loading = false )
+      //.subscribe( value => console.log(value)) // Need to call subscribe to make it hot!
   }
 
-  doSearch(term:string) {
-    this.loading = true;
-    this.itunes.search(term).subscribe( data => {
-      this.loading = false;
-      this.results = data;
-    });
+  doSearch(term: string) {
+    this.results = this.itunes.search(term);
   }
 
 }

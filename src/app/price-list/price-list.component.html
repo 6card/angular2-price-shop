@@ -8,16 +8,22 @@
   <button class="btn btn-primary" (click)="doSearch(search.value)">Search</button>
 </form>
 
+<form class="form-inline">
+  <div class="form-group">
+    <input type="search" class="form-control" placeholder="Enter search string" [formControl]="searchField">
+  </div>
+</form>
+
 <div class="text-center">
   <p class="lead" *ngIf="loading">Loading...</p>
 </div>
 
 <div class="ui middle aligned divided list">
-  <div class="item" *ngFor="let item of results">
-    <img class="ui avatar image" src="{{item.thumbnail}}">
+  <div class="item" *ngFor="let track of results | async">
+    <img class="ui avatar image" src="{{track.thumbnail}}">
     <div class="content">
-      <a class="header" target="_blank" href="{{item.link}}">{{ item.track }}</a>
-      <div class="description">{{ item.artist }}</div>
+      <a class="header" target="_blank" href="{{track.link}}">{{ track.track }}</a>
+      <div class="description">{{ track.artist }}</div>
     </div>
   </div>
 </div>

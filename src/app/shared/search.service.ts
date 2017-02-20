@@ -5,25 +5,21 @@ import 'rxjs/Rx';
 import {Observable} from 'rxjs';
 
 export class SearchItem {
-  constructor(
-    public track: string,
-    public artist: string,
-    public link: string,
-    public thumbnail: string,
-    public artistId: string) {
+  constructor(public track: string,
+              public artist: string,
+              public link: string,
+              public thumbnail: string,
+              public artistId: string) {
   }
 }
 
 @Injectable()
 export class SearchService {
   apiRoot:string = 'https://itunes.apple.com/search';
-  results:Object[];
-  loading:boolean;
 
   constructor(private http: Http) {
-    this.results = [];
-    this.loading = false;
   }
+
   search(term:string): Observable<SearchItem[]> {
     let apiURL = `${this.apiRoot}?term=${term}&media=music&limit=20`;/*&callback=JSONP_CALLBACK*/
     return this.http.get(apiURL)
