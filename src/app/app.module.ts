@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PriceListComponent } from './price-list/price-list.component';
+import { SearchService } from './shared/search.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { PriceListComponent } from './price-list/price-list.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

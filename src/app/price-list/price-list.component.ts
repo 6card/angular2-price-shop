@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Price } from '../common/price';
+import { Price } from '../shared/price';
+import { SearchService } from '../shared/search.service';
 
 @Component({
   selector: 'app-price-list',
@@ -8,7 +9,7 @@ import { Price } from '../common/price';
 })
 export class PriceListComponent implements OnInit {
   prices: Price[];
-  constructor() { 
+  constructor(private itunes:SearchService) { 
     this.prices = [
       {
         name: "Молоко",
@@ -22,6 +23,10 @@ export class PriceListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  doSearch(term:string) {
+    this.itunes.search(term)
   }
 
 }
