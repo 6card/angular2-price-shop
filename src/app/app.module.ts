@@ -2,16 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import	{Routes,	RouterModule}	from	"@angular/router";
+import { Routes,	RouterModule }	from	"@angular/router";
 
 import { AppComponent } from './app.component';
 import { PriceListComponent } from './price-list/price-list.component';
-import { SearchService } from './shared/search.service';
 import { HomeComponent } from './home/home.component';
+import { ShopListComponent } from './shop-list/shop-list.component';
+
+import { SearchService } from './shared/search.service';
+import { ShopService } from './shared/shop.service';
+
 
 const	routes:	Routes	=	[
 		{path:	'',	redirectTo:	'home',	pathMatch:	'full'},
 		{path:	'find',	redirectTo:	'search'},
+    {path:	'shops',	component:	ShopListComponent},
 		{path:	'home',	component:	HomeComponent},
 		{path:	'search',	component:	PriceListComponent},
 		{path:	'**',	component:	HomeComponent}
@@ -21,7 +26,8 @@ const	routes:	Routes	=	[
   declarations: [
     AppComponent,
     PriceListComponent,
-    HomeComponent
+    HomeComponent,
+    ShopListComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,7 @@ const	routes:	Routes	=	[
     HttpModule,
     RouterModule.forRoot(routes,	{useHash:	true})
   ],
-  providers: [SearchService],
+  providers: [SearchService, ShopService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
