@@ -1,7 +1,9 @@
 <p>
   shop-list works!
 </p>
-<button class="btn btn-primary" (click)="getAllShops()">Search</button>
+<button class="ui button" (click)="getAllShops()">Search</button>
+
+<button class="ui primary button" [routerLink]="['/shop/new']">New</button>
 
 <div class="ui active centered inline loader" *ngIf="loading"></div>
 

@@ -1,0 +1,28 @@
+<p>
+  shop-form works!
+</p>
+
+<form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="myform">
+  <div class="field" 
+    [ngClass]="{
+      'error' :  myform.controls.name.invalid && myform.controls.name.dirty
+  }">
+    <label>Name</label>
+    <input name="name" placeholder="Name" type="text" formControlName="name">
+  </div>
+  <div class="field" 
+    [ngClass]="{
+      'error' :  myform.controls.description.invalid && myform.controls.description.dirty
+  }">
+    <label>Description</label>
+    <input name="description" placeholder="Description" type="text" formControlName="description">
+  </div>
+  <div class="field" 
+    [ngClass]="{
+      'error' :  myform.controls.adress.invalid && myform.controls.adress.dirty
+  }">
+    <label>Adress</label>
+    <input name="adress" placeholder="Adress" type="text" formControlName="adress">
+  </div>
+  <button class="ui button" type="submit" [disabled]="!myform.valid">Submit</button>
+</form>

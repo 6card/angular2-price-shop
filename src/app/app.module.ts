@@ -12,12 +12,14 @@ import { ShopListComponent } from './shop-list/shop-list.component';
 import { SearchService } from './shared/search.service';
 import { ShopService } from './shared/shop.service';
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
+import { ShopFormComponent } from './shop-form/shop-form.component';
 
 
 const	routes:	Routes	=	[
 		{path:	'',	redirectTo:	'home',	pathMatch:	'full'},
 		{path:	'find',	redirectTo:	'search'},
-    {path:	'shops',	component:	ShopListComponent},
+    {path:	'shops',	component:	ShopListComponent},    
+    {path:  'shop/new', component: ShopFormComponent},
     {path:  'shop/:id', component: ShopDetailComponent},
 		{path:	'home',	component:	HomeComponent},
 		{path:	'search',	component:	PriceListComponent},
@@ -31,6 +33,7 @@ const	routes:	Routes	=	[
     HomeComponent,
     ShopListComponent,
     ShopDetailComponent,
+    ShopFormComponent,
   ],
   imports: [
     BrowserModule,
