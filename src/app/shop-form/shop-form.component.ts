@@ -2,7 +2,7 @@ import { NgModule, Component, Output, EventEmitter, OnInit } from '@angular/core
 import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from "@angular/router";
 
-import { ShopItem, ShopService } from '../shared/shop.service';
+import { Shop, ShopService } from '../shared/shop.service';
 
 class ShopForm {
   constructor(public name: string = '',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
-import { ShopItem, ShopService } from '../shared/shop.service';
+import { Shop, ShopService } from '../shared/shop.service';
 
 @Component({
   selector: 'app-shop-detail',
@@ -11,7 +11,7 @@ import { ShopItem, ShopService } from '../shared/shop.service';
 export class ShopDetailComponent implements OnInit {
 
   private loading: boolean = false;
-  private shop: ShopItem;
+  private shop: Shop;
 
   constructor(private route: ActivatedRoute,
               private shopService:ShopService) {

@@ -4,7 +4,7 @@ import { Http, Response, URLSearchParams, Headers, RequestOptions } from '@angul
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
 
-export class ShopItem {
+export class Shop {
   constructor(public id: number,
               public name: string,
               public description: string,
@@ -19,12 +19,12 @@ export class ShopService {
 
   }
 
-  getAll(): Observable<ShopItem[]> {
+  getAll(): Observable<Shop[]> {
     let apiURL = this.apiRoot;
     return this.http.get(apiURL)
       .map(res => {
         return res.json().map(item => {
-          return new ShopItem(
+          return new Shop(
             item.id,
             item.name,
             item.description,
@@ -34,12 +34,12 @@ export class ShopService {
       });
   }
 
-  getById(id: number): Observable<ShopItem> {
+  getById(id: number): Observable<Shop> {
     let apiURL = `${this.apiRoot}/${id}`;
     return this.http.get(apiURL)
       .map( (res:Response) => {
           let item = res.json();
-          return new ShopItem(
+          return new Shop(
             item.id,
             item.name,
             item.description,
@@ -48,7 +48,7 @@ export class ShopService {
       });
   }
 
-  addShop(shop: Object): Observable<ShopItem> {
+  addShop(shop: Object): Observable<Shop> {
     let apiURL = `${this.apiRoot}`;
 
     let bodyString = JSON.stringify(shop); // Stringify payload
@@ -58,7 +58,7 @@ export class ShopService {
     return this.http.post(apiURL, bodyString, options)
       .map( (res:Response) => {
           let item = res.json();
-          return new ShopItem(
+          return new Shop(
             item.id,
             item.name,
             item.description,

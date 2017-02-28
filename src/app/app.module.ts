@@ -11,9 +11,12 @@ import { ShopListComponent } from './shop-list/shop-list.component';
 
 import { SearchService } from './shared/search.service';
 import { ShopService } from './shared/shop.service';
+import { ProductService } from './shared/product.service';
+
 import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 import { ShopFormComponent } from './shop-form/shop-form.component';
 import { OrderByPipe } from './order-by.pipe';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 const	routes:	Routes	=	[
@@ -22,6 +25,9 @@ const	routes:	Routes	=	[
     {path:	'shops',	component:	ShopListComponent},    
     //{path:  'shop/new', component: ShopFormComponent},
     {path:  'shop/:id', component: ShopDetailComponent},
+
+    {path:	'products',	component:	ProductListComponent}, 
+
 		{path:	'home',	component:	HomeComponent},
 		{path:	'search',	component:	PriceListComponent},
 		{path:	'**',	component:	HomeComponent}
@@ -36,6 +42,7 @@ const	routes:	Routes	=	[
     ShopDetailComponent,
     ShopFormComponent,
     OrderByPipe,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,7 @@ const	routes:	Routes	=	[
     HttpModule,
     RouterModule.forRoot(routes,	{useHash:	true})
   ],
-  providers: [SearchService, ShopService],
+  providers: [SearchService, ShopService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

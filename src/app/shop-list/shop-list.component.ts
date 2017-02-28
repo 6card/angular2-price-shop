@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ShopItem, ShopService } from '../shared/shop.service';
+import { Shop, ShopService } from '../shared/shop.service';
 import { OrderByPipe } from "../order-by.pipe"
 
 @Component({
@@ -11,7 +11,7 @@ import { OrderByPipe } from "../order-by.pipe"
 })
 export class ShopListComponent implements OnInit {
   private loading: boolean = false;
-  private shops: ShopItem[];
+  private shops: Shop[];
 
   constructor(private shopService:ShopService) { }
 

@@ -1,0 +1,16 @@
+<p>
+  product-list works!
+</p>
+
+<button class="ui button" (click)="getAllProducts()">Search</button>
+
+<div class="ui active centered inline loader" *ngIf="loading"></div>
+
+<div class="ui middle aligned divided list" *ngIf="!loading">
+  <div class="item" *ngFor="let product of products | orderBy : ['+name']">
+    <div class="content">
+      <a class="header" [routerLink]="['/product', product.id]">{{ product.name }}</a>
+      <div class="description">{{ product.code }}</div>
+    </div>
+  </div>
+</div>
