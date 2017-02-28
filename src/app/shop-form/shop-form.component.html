@@ -1,7 +1,3 @@
-<p>
-  shop-form works!
-</p>
-
 <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="myform">
   <div class="field" 
     [ngClass]="{
@@ -24,5 +20,5 @@
     <label>Adress</label>
     <input name="adress" placeholder="Adress" type="text" formControlName="adress">
   </div>
-  <button class="ui button" type="submit" [disabled]="!myform.valid">Submit</button>
+  <button class="ui button" [ngClass]="{'loading' : loading}" type="submit" [disabled]="!myform.valid || loading">Submit</button>
 </form>

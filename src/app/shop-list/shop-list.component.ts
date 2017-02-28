@@ -21,15 +21,32 @@ export class ShopListComponent implements OnInit {
 
   getAllShops() {
     this.loading = true;
-    this.shopService.getAll().subscribe( data => {
-      this.loading = false;
-      this.shops = data;
-    });
+    this.shopService.getAll()
+      .subscribe( data => {
+        this.shops = data;
+      }, (err) => {
+          this.handleError(err);
+        }, () => { // <----
+          this.handleComplete();
+      });
+  }
+
+  handleError(err: any) {
+
+  }
+
+  handleComplete() {
+    this.loading = false;
   }
 
   handleShopAdded(shop) {
     // Handle the event
-     this.shops.push(shop);
+    this.shops.push(shop);
+    $('#new-shop.ui.modal').modal('hide');    
+  }
+
+  onModalNew() {
+    $('#new-shop.ui.modal').modal('show');
   }
 
 }

@@ -1,18 +1,30 @@
-<p>
-  shop-list works!
-</p>
-<app-shop-form (shopAdded)="handleShopAdded($event)"></app-shop-form>
+<div class="ui active inverted dimmer" *ngIf="loading">
+  <div class="ui loader"></div>
+</div>
 <button class="ui button" (click)="getAllShops()">Search</button>
+<button class="ui primary button" (click)="onModalNew()">New</button>
 
-<button class="ui primary button" [routerLink]="['/shop/new']">New</button>
-
-<div class="ui active centered inline loader" *ngIf="loading"></div>
 
 <div class="ui middle aligned divided list" *ngIf="!loading">
   <div class="item" *ngFor="let shop of shops | orderBy : ['-id']">
     <div class="content">
       <a class="header" [routerLink]="['/shop', shop.id]">{{ shop.name }}</a>
       <div class="description">{{ shop.description }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="ui modal" id="new-shop">
+  <i class="close icon"></i>
+  <div class="header">
+    Add shop
+  </div>
+  <div class="content">
+    <app-shop-form (shopAdded)="handleShopAdded($event)"></app-shop-form>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Cancel
     </div>
   </div>
 </div>

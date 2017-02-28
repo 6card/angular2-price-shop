@@ -27,4 +27,8 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  onModal() {
+    $('.ui.modal').modal('show');
+  }
+
 }

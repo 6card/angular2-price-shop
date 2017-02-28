@@ -42,15 +42,26 @@ export class ShopFormComponent implements OnInit {
   onSubmit() {
     if (this.myform.valid) {
       let body = this.myform.value;
-      console.log(JSON.stringify(body));
+      //console.log(JSON.stringify(body));
       this.loading = true;
-      this.shopService.addShop(body).subscribe( data => {
-        this.loading = false;
-        //this.router.navigate(['/shop', data.id]);
-        this.shopAdded.emit(data);
+      this.shopService.addShop(body)
+        .subscribe( data => {
+          this.shopAdded.emit(data);          
+        }, (err) => {
+          this.handleError(err);
+        }, () => { // <----
+          this.handleComplete();
       });
-      this.myform.reset();
+      
     }
+  }
+  handleError(err: any) {
+
+  }
+
+  handleComplete() {
+    this.loading = false;
+    this.myform.reset();
   }
 
 }
