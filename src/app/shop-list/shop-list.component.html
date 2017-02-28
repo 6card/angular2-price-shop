@@ -1,6 +1,7 @@
 <p>
   shop-list works!
 </p>
+<app-shop-form (shopAdded)="handleShopAdded($event)"></app-shop-form>
 <button class="ui button" (click)="getAllShops()">Search</button>
 
 <button class="ui primary button" [routerLink]="['/shop/new']">New</button>
@@ -8,7 +9,7 @@
 <div class="ui active centered inline loader" *ngIf="loading"></div>
 
 <div class="ui middle aligned divided list" *ngIf="!loading">
-  <div class="item" *ngFor="let shop of shops">
+  <div class="item" *ngFor="let shop of shops | orderBy : ['-id']">
     <div class="content">
       <a class="header" [routerLink]="['/shop', shop.id]">{{ shop.name }}</a>
       <div class="description">{{ shop.description }}</div>

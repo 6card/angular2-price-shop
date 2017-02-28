@@ -1,4 +1,4 @@
-import { NgModule, Component, OnInit, ViewChild } from '@angular/core';
+import { NgModule, Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from "@angular/router";
 
@@ -18,6 +18,8 @@ class ShopForm {
 })
 export class ShopFormComponent implements OnInit {
   myform: FormGroup;
+
+  @Output() shopAdded = new EventEmitter();
 
   private loading: boolean = false;
 
@@ -42,11 +44,12 @@ export class ShopFormComponent implements OnInit {
       let body = this.myform.value;
       console.log(JSON.stringify(body));
       this.loading = true;
-      this.shopService.postNew(body).subscribe( data => {
+      this.shopService.addShop(body).subscribe( data => {
         this.loading = false;
-        this.router.navigate(['/shop', data.id]);
+        //this.router.navigate(['/shop', data.id]);
+        this.shopAdded.emit(data);
       });
-      //this.myform.reset();
+      this.myform.reset();
     }
   }
 
