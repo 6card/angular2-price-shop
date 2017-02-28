@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 
-import { Shop, ShopService } from '../shared/shop.service';
+import { Shop, ShopService } from '../../shared/shop.service';
 
 @Component({
   selector: 'app-shop-detail',

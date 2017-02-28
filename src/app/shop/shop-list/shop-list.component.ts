@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Shop, ShopService } from '../shared/shop.service';
-import { OrderByPipe } from "../order-by.pipe"
+import { Shop, ShopService } from '../../shared/shop.service';
 
 @Component({
   selector: 'app-shop-list',

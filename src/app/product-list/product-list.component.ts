@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Product, ProductService } from '../shared/product.service';
-import { OrderByPipe } from "../order-by.pipe"
 
 @Component({
   selector: 'app-product-list',

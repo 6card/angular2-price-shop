@@ -5,19 +5,20 @@ import { HttpModule } from '@angular/http';
 import { Routes,	RouterModule }	from	"@angular/router";
 
 import { AppComponent } from './app.component';
-import { PriceListComponent } from './price-list/price-list.component';
 import { HomeComponent } from './home/home.component';
-import { ShopListComponent } from './shop-list/shop-list.component';
+import { PriceListComponent } from './price-list/price-list.component';
+
+import { ShopListComponent } from './shop/shop-list/shop-list.component';
+import { ShopDetailComponent } from './shop/shop-detail/shop-detail.component';
+import { ShopFormComponent } from './shop/shop-form/shop-form.component';
+
+import { ProductListComponent } from './product-list/product-list.component';
 
 import { SearchService } from './shared/search.service';
 import { ShopService } from './shared/shop.service';
 import { ProductService } from './shared/product.service';
 
-import { ShopDetailComponent } from './shop-detail/shop-detail.component';
-import { ShopFormComponent } from './shop-form/shop-form.component';
-import { OrderByPipe } from './order-by.pipe';
-import { ProductListComponent } from './product-list/product-list.component';
-
+import { OrderByPipe } from './shared/order-by.pipe';
 
 const	routes:	Routes	=	[
 		{path:	'',	redirectTo:	'home',	pathMatch:	'full'},
@@ -49,7 +50,7 @@ const	routes:	Routes	=	[
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes,	{useHash:	true})
+    RouterModule.forRoot(routes,	{useHash:	false})
   ],
   providers: [SearchService, ShopService, ProductService],
   bootstrap: [AppComponent]
