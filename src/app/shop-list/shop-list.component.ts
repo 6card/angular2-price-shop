@@ -10,15 +10,20 @@ import { ShopItem, ShopService } from '../shared/shop.service';
 })
 export class ShopListComponent implements OnInit {
   private loading: boolean = false;
-  private shops: Observable<ShopItem[]>;
+  private shops: ShopItem[];
 
   constructor(private shopService:ShopService) { }
 
   ngOnInit() {
+    this.getAllShops();
   }
 
-  doSearch(term: string) {
-    this.shops = this.shopService.getAll();
+  getAllShops() {
+    this.loading = true;
+    this.shopService.getAll().subscribe( data => {
+      this.loading = false;
+      this.shops = data;
+    });
   }
 
 }

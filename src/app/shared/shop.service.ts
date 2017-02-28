@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
@@ -20,7 +20,7 @@ export class ShopService {
   }
 
   getAll(): Observable<ShopItem[]> {
-    let apiURL = `${this.apiRoot}`;/*&callback=JSONP_CALLBACK*/
+    let apiURL = this.apiRoot;
     return this.http.get(apiURL)
       .map(res => {
         return res.json().map(item => {
@@ -31,6 +31,20 @@ export class ShopService {
             item.adress
           );
         });
+      });
+  }
+
+  getById(id: number): Observable<ShopItem> {
+    let apiURL = `${this.apiRoot}/${id}`;
+    return this.http.get(apiURL)
+      .map( (res:Response) => {
+          let item = res.json();
+          return new ShopItem(
+            item.id,
+            item.name,
+            item.description,
+            item.adress
+          );
       });
   }
 }

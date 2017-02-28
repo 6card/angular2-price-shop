@@ -1,0 +1,27 @@
+<p>
+  shop-detail works!
+</p>
+
+<div class="ui active centered inline loader" *ngIf="loading"></div>
+
+<div class="ui unstackable items" *ngIf="!loading">
+  <div class="item" *ngIf="shop">
+    <div class="small image">
+      <img src="http://semantic-ui.com/images/wireframe/image.png">
+    </div>
+    <div class="content">
+      <div class="header">
+        {{ shop.name }}
+      </div >
+      <div class="meta">
+        <span>{{ shop.description }}</span>
+      </div>
+      <div class="description">
+        <p></p>
+      </div>
+      <div class="extra">
+        {{ shop.adress }}
+      </div>
+    </div>
+  </div>
+</div>

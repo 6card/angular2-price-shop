@@ -11,12 +11,14 @@ import { ShopListComponent } from './shop-list/shop-list.component';
 
 import { SearchService } from './shared/search.service';
 import { ShopService } from './shared/shop.service';
+import { ShopDetailComponent } from './shop-detail/shop-detail.component';
 
 
 const	routes:	Routes	=	[
 		{path:	'',	redirectTo:	'home',	pathMatch:	'full'},
 		{path:	'find',	redirectTo:	'search'},
     {path:	'shops',	component:	ShopListComponent},
+    {path:  'shop/:id', component: ShopDetailComponent},
 		{path:	'home',	component:	HomeComponent},
 		{path:	'search',	component:	PriceListComponent},
 		{path:	'**',	component:	HomeComponent}
@@ -28,6 +30,7 @@ const	routes:	Routes	=	[
     PriceListComponent,
     HomeComponent,
     ShopListComponent,
+    ShopDetailComponent,
   ],
   imports: [
     BrowserModule,
